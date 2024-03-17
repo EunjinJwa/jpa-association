@@ -34,9 +34,9 @@ public class EntityMetadataBuilder {
         Class<?> fieldClassType = EntityInfoExtractor.getFieldClassType(field);
         String joinColumnName = field.getAnnotation(JoinColumn.class).name();
         if (field.isAnnotationPresent(OneToMany.class)) {
-            return new RelationEntityTable(RelationType.ONE_TO_MANY, fieldClassType, joinColumnName);
+            return new RelationEntityTable(RelationType.ONE_TO_MANY, fieldClassType, field, joinColumnName);
         } else if (field.isAnnotationPresent(ManyToOne.class)) {
-            return new RelationEntityTable(RelationType.MANY_TO_ONE, fieldClassType, joinColumnName);
+            return new RelationEntityTable(RelationType.MANY_TO_ONE, fieldClassType, field, joinColumnName);
         }
         return null;
     }

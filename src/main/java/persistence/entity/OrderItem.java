@@ -14,6 +14,9 @@ public class OrderItem {
 
     private Integer quantity;
 
+    @Column(name = "order_id")
+    private Long orderId;
+
     public Long getId() {
         return id;
     }
@@ -36,5 +39,13 @@ public class OrderItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 }

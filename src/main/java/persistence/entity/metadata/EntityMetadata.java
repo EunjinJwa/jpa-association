@@ -1,5 +1,6 @@
 package persistence.entity.metadata;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +39,15 @@ public class EntityMetadata {
         columns.getColumnByColumnName(columnName).setValue(object, value);
     }
 
+    public void setValue(Object object, Field field, Object value) {
+        field.setAccessible(true);
+        try {
+            field.set(object, value);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Object getValue(Object entity, String columnName) {
         return columns.getColumnByColumnName(columnName).getValue(entity);
     }
@@ -50,13 +60,6 @@ public class EntityMetadata {
         return columnValues;
     }
 
-    public void addRelationEntityMetadata(RelationEntityTable relationEntityTable) {
-        if (relationEntityTables == null) {
-            relationEntityTables = new ArrayList<>();
-        }
-        relationEntityTables.add(relationEntityTable);
-    }
-
     public List<RelationEntityTable> getRelationEntityTables() {
         return relationEntityTables;
     }
@@ -64,4 +67,5 @@ public class EntityMetadata {
     public void setRelationEntityTables(List<RelationEntityTable> relationEntityTables) {
         this.relationEntityTables = relationEntityTables;
     }
+
 }

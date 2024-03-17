@@ -62,8 +62,8 @@ public class DMLQueryBuilder {
         return select.selectByIdQuery(tableName, columns, id);
     }
 
-    public String selectJoinQuery(EntityMetadata oneEntity, EntityMetadata manyEntity, Object oneEntityId) {
-        return select.selectJoinQuery(oneEntity, manyEntity, oneEntity.getRelationEntityTables().get(0).getJoinColumnName(), oneEntityId);
+    public String selectJoinQuery(EntityMetadata mainEntity, EntityMetadata joinEntity, String joinColumn, Object oneEntityId) {
+        return select.selectJoinQuery(mainEntity, joinEntity, joinColumn, oneEntityId);
     }
 
     public String updateSql(String tableName, EntityColumns columns, Map<String, Object> columnValues) {
