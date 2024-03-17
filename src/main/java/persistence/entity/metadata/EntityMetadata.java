@@ -1,11 +1,14 @@
 package persistence.entity.metadata;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EntityMetadata {
     private EntityTable entityTable;
     private EntityColumns columns;
+    private List<RelationEntityTable> relationEntityTables;
 
     public EntityTable getEntityTable() {
         return entityTable;
@@ -47,4 +50,18 @@ public class EntityMetadata {
         return columnValues;
     }
 
+    public void addRelationEntityMetadata(RelationEntityTable relationEntityTable) {
+        if (relationEntityTables == null) {
+            relationEntityTables = new ArrayList<>();
+        }
+        relationEntityTables.add(relationEntityTable);
+    }
+
+    public List<RelationEntityTable> getRelationEntityTables() {
+        return relationEntityTables;
+    }
+
+    public void setRelationEntityTables(List<RelationEntityTable> relationEntityTables) {
+        this.relationEntityTables = relationEntityTables;
+    }
 }
