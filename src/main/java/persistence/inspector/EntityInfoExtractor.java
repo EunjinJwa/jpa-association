@@ -45,7 +45,7 @@ public class EntityInfoExtractor {
 
     public static boolean isRelationshipField(Field field) {
         return RELATIONSHIP_ANNOTATIONS.stream()
-                .anyMatch(annotation -> field.isAnnotationPresent(annotation));
+                .anyMatch(field::isAnnotationPresent);
     }
 
     public static Class<?> getFieldClassType(Field field) {

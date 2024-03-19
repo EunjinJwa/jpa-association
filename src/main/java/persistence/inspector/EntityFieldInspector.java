@@ -24,6 +24,11 @@ public class EntityFieldInspector {
         return ENTITY_RELATION_ANNOTATIONS.stream()
                 .anyMatch(annotation -> field.isAnnotationPresent(annotation));
     }
+
+    public static String getFieldName(Field field) {
+        return field.getName();
+    }
+
     public static String getColumnName(Field field) {
         return field.isAnnotationPresent(Column.class) && !field.getAnnotation(Column.class).name().isBlank() ?
                 field.getAnnotation(Column.class).name() : field.getName();

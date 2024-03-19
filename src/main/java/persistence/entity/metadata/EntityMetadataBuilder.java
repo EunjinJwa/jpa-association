@@ -50,18 +50,7 @@ public class EntityMetadataBuilder {
     }
 
     private static EntityColumn buildColumn(String tableName, Field field) {
-        EntityColumn column = new EntityColumn();
-        column.setTableName(tableName);
-        column.setField(field);
-        column.setFieldName(field.getName());
-        column.setColumnName(EntityInfoExtractor.getColumnName(field));
-        column.setSqlTypeCode(dataType.getSqlTypeCode(field.getType()));
-        column.setPrimaryKey(EntityInfoExtractor.isPrimaryKey(field));
-        column.setNullable(EntityFieldInspector.isNullable(field));
-        column.setGenerationType(EntityFieldInspector.getGenerationType(field));
-        column.setLength(EntityFieldInspector.getLength(field));
-
-        return column;
+        return EntityColumn.fromField(tableName, field, dataType);
     }
 
 }
